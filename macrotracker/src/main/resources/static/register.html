@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="nl">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Macro Tracker - Registreren</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="bg-slate-100 flex items-center justify-center min-h-screen">
+
+    <div class="bg-white p-8 rounded-xl shadow-md w-full max-w-md">
+        <h1 class="text-2xl font-bold text-slate-800 mb-2 text-center">Account Aanmaken</h1>
+        <p class="text-slate-500 mb-6 text-center">Start met het bijhouden van je macro's.</p>
+
+        <form id="registerForm" class="space-y-4">
+            <div>
+                <label class="block text-sm font-medium text-slate-600 mb-1" for="username">Gebruikersnaam:</label>
+                <input type="text" id="username" required
+                    class="w-full border border-slate-300 rounded-lg p-2.5 focus:outline-none focus:ring-2 focus:ring-blue-500">
+            </div>
+
+            <div>
+                <label class="block text-sm font-medium text-slate-600 mb-1" for="password">Wachtwoord:</label>
+                <input type="password" id="password" required
+                    class="w-full border border-slate-300 rounded-lg p-2.5 focus:outline-none focus:ring-2 focus:ring-blue-500">
+            </div>
+
+            <button type="submit"
+                class="w-full bg-blue-600 hover:bg-blue-700 text-white font-medium p-2.5 rounded-lg transition">Registreren</button>
+        </form>
+
+        <p class="text-sm text-slate-500 mt-4 text-center">
+            Al een account? <a href="/index.html" class="text-blue-600 hover:underline">Log hier in</a>
+        </p>
+    </div>
+
+    <script>
+        document.getElementById('registerForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+
+            const response = await fetch('/api/auth/register', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ username, password })
+            });
+
+            if (response.ok) {
+                alert('Registratie gelukt! Je kunt nu inloggen.');
+                window.location.href = '/index.html';
+            } else {
+                const err = await response.text();
+                alert('Fout: ' + err);
+            }
+        });
+    </script>
+
+</body>
+
+</html>

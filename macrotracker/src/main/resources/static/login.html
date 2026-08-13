@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="nl">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Login - Macro Tracker</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="bg-slate-100 flex items-center justify-center min-h-screen">
+
+    <div class="bg-white p-8 rounded-xl shadow-md w-full max-w-md">
+        <h1 class="text-2xl font-bold text-slate-800 mb-6 text-center">Inloggen</h1>
+
+        <!-- Spring Security zoekt standaard naar actie /login -->
+        <form action="/login" method="POST" class="space-y-4">
+            <div>
+                <label class="block text-sm font-medium text-slate-600 mb-1">Gebruikersnaam:</label>
+                <input type="text" name="username" required
+                    class="w-full border border-slate-300 rounded-lg p-2.5 focus:outline-none focus:ring-2 focus:ring-blue-500">
+            </div>
+            <div>
+                <label class="block text-sm font-medium text-slate-600 mb-1">Wachtwoord:</label>
+                <input type="password" name="password" required
+                    class="w-full border border-slate-300 rounded-lg p-2.5 focus:outline-none focus:ring-2 focus:ring-blue-500">
+            </div>
+            <button type="submit"
+                class="w-full bg-blue-600 hover:bg-blue-700 text-white font-medium p-2.5 rounded-lg transition">Inloggen</button>
+        </form>
+
+        <p class="text-sm text-slate-500 mt-4 text-center">
+            Nog geen account? <a href="/register.html" class="text-blue-600 hover:underline">Registreer hier</a>
+        </p>
+    </div>
+
+</body>
+
+</html>
